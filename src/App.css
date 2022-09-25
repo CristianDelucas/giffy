@@ -28,8 +28,16 @@
 a{
   color:#09F;
   font-size: 32px;
+  text-decoration: none;
+  
 }
 
 button{
   font-size: 48px;
 }
+
+ul{
+  text-align: left;
+  list-style: none;
+}
+

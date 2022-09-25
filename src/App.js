@@ -1,27 +1,48 @@
 
 import './App.css';
-import React, {useState} from 'react';
-import ListOfGifs from './components/ListOfGifs';
-import {Link, Route} from 'wouter';
+import React from 'react';
+
+import {Route} from 'wouter';
+
+import SearchResults from './@pages/SearchResults';
+import Home from './@pages/Home';
+import Detail from './@pages/Detail';
+import StaticContext from './context/StaticContext'
+import { GifsContextProvider } from './context/GifsContext';
 
 
 
 function App() {
 
   return (
+    <StaticContext.Provider value={{
+      name:'con-provider',
+      suscribeteAlCanal:true
+  }}>
     <div className="App">
     
       <section className="App-content">
       <h1>App</h1>
-      <Link to='/gif/colombia'>Colombia</Link>
-      <Link to='/gif/mexico'>Mexico</Link>
-      <Route path='/gif/:keyword' component={ListOfGifs}/>
-      
+      <GifsContextProvider>
+        <Route 
+          path='/' 
+          component={Home}
+        />
+        <Route 
+          path='/search/:keyword' 
+          component={SearchResults}
+        />
+        <Route 
+          path='/gif/:id' 
+          component={Detail}
+        />
+      </GifsContextProvider>
       
       
       </section>
       
     </div>
+    </StaticContext.Provider>
   );
 }
 
