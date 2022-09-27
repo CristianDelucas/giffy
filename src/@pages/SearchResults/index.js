@@ -1,24 +1,31 @@
-import React, { useEffect } from 'react';
-import { useState } from 'react';
-import ListOfGifs from '../../components/ListOfGifs/ListOfGifs';
-import Spinner from '../../components/Spinner';
-import getGifs from '../../services/getGifs';
-import { useGifs } from '../hooks/useGifs';
+import React from "react";
+import ListOfGifs from "components/ListOfGifs/ListOfGifs";
+import Spinner from "components/Spinner";
+import { useGifs } from "hooks/useGifs";
+
+const SearchResults = ({ params }) => {
+  const { keyword } = params;
+
+  const { loading, gifs,setPage } = useGifs({ keyword });
+
+  const handleNextPage = ()=> setPage(prevPage => prevPage +1);
+  
 
 
-const SearchResults = ({params}) =>{
-    const {keyword} = params;
-    
-    const {loading,gifs} = useGifs({keyword});
-    
-    
-
-    return <>
-            {loading? <Spinner/>:
-            <ListOfGifs gifs={gifs}/>
-            }
+  return (
+    <>
+      {loading ? (
+        <Spinner />
+      ) : (
+        <>
+          <h3 className="App-title">{decodeURI(keyword)}</h3>
+          <ListOfGifs gifs={gifs} />
         </>
-    
-}
+      )}
+      <br/>
+      <button onClick={handleNextPage}>Get next page</button>
+    </>
+  );
+};
 
-export default SearchResults
+export default SearchResults;

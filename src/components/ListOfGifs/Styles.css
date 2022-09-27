@@ -4,6 +4,8 @@
     --gridList-gap: 6px;
   }
   
+  /*se pone min-height 100 porque asi evitamos que carga al abrir la pagina cuando otros componentes no se 
+  hayan cargado por el tema del LazyTrending*/
   .ListOfGifs {
     display: grid;
     min-height: 100vh;

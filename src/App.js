@@ -2,7 +2,7 @@
 import './App.css';
 import React from 'react';
 
-import {Route} from 'wouter';
+import {Link, Route} from 'wouter';
 
 import SearchResults from './@pages/SearchResults';
 import Home from './@pages/Home';
@@ -20,9 +20,12 @@ function App() {
       suscribeteAlCanal:true
   }}>
     <div className="App">
-    
       <section className="App-content">
-      <h1>App</h1>
+      <Link to="/">
+      <figure className="App-logo">
+              <img alt='Giffy logo' src='/logo.png' />
+      </figure>
+      </Link>
       <GifsContextProvider>
         <Route 
           path='/' 
