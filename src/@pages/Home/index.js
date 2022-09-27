@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useLocation } from "wouter";
+import { useLocation } from "wouter";
 import ListOfGifs from "../../components/ListOfGifs/ListOfGifs";
 import { useGifs } from "../../hooks/useGifs";
 import TrendingSearches from "../../components/TrendingSearches";
@@ -17,7 +17,7 @@ const Home = () => {
     setKeyword(e.target.value);
   };
 
-  const { loading, gifs } = useGifs();
+  const {  gifs } = useGifs();
 
   return (
     <>

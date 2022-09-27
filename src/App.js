@@ -1,15 +1,17 @@
 
 import './App.css';
-import React from 'react';
+import React, { Suspense } from 'react';
 
 import {Link, Route} from 'wouter';
 
 import SearchResults from './@pages/SearchResults';
-import Home from './@pages/Home';
+
 import Detail from './@pages/Detail';
 import StaticContext from './context/StaticContext'
 import { GifsContextProvider } from './context/GifsContext';
+import Spinner from 'components/Spinner';
 
+const Home = React.lazy(() => import('./@pages/Home'));
 
 
 function App() {
@@ -19,7 +21,9 @@ function App() {
       name:'con-provider',
       suscribeteAlCanal:true
   }}>
+  
     <div className="App">
+    <Suspense fallback={Spinner}>
       <section className="App-content">
       <Link to="/">
       <figure className="App-logo">
@@ -43,6 +47,7 @@ function App() {
       
       
       </section>
+      </Suspense>
       
     </div>
     </StaticContext.Provider>
