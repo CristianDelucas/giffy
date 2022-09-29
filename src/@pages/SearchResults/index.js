@@ -4,6 +4,8 @@ import Spinner from "components/Spinner";
 import { useGifs } from "hooks/useGifs";
 import useNearScreen from "hooks/useNearScreen";
 import debounce from "just-debounce-it";
+import useSEO from "hooks/useSEO";
+import { Helmet } from "react-helmet";
 
 const SearchResults = ({ params }) => {
   const { keyword } = params;
@@ -25,6 +27,8 @@ const SearchResults = ({ params }) => {
       () => setPage(prevPage => prevPage +1), 200)
   , [setPage]);
 
+  const title= gifs ? `${gifs.length} Resultados de ${decodeURI(keyword)}`: ''
+  //useSEO({title,updated:Boolean(params.keyword)})
   
   useEffect(function () {
     console.log(isNearScreen);
@@ -37,6 +41,10 @@ const SearchResults = ({ params }) => {
         <Spinner />
       ) : (
         <>
+          <Helmet>
+              <title>{title} || Giffy</title>
+              <meta name="description" content={title}></meta>
+          </Helmet>
           <h3 className="App-title">{decodeURI(keyword)}</h3>
           <ListOfGifs gifs={gifs} />
           <div ref={externalRef} id="visor"></div>
