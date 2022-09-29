@@ -7,7 +7,7 @@ import SearchForm from "components/SearchForm";
 import {Helmet} from 'react-helmet';
 
 const Home = () => {
-  const [keyword, setKeyword] = useState("");
+  
   const [path, pushLocation] = useLocation();
 
   const handleSubmit = useCallback(({keyword}) => {
@@ -22,6 +22,7 @@ const Home = () => {
     <>
     <Helmet>
         <title>Home || Giffy</title>
+        <link rel="canonical" href="https://lapaginadeproduccion.com"/>
       </Helmet>
     <SearchForm onSubmit={handleSubmit}/>
       <div className="App-main">
